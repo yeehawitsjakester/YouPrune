@@ -7,6 +7,10 @@ ignores, lets you hard-hide channels by right-clicking, and strips feed slop
 
 Everything runs locally. No account, no network calls (yet — see Roadmap).
 
+**Security & supply-chain:** least-privilege by design and verifiable
+byte-for-byte — see [SECURITY.md](SECURITY.md). Run `./scripts/audit.sh` to check
+permissions and scan for dangerous APIs; it also gates every release.
+
 ## Install (unpacked)
 
 1. Open `brave://extensions` (or `chrome://extensions`).

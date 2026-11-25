@@ -24,58 +24,65 @@
     renderCounts(data.counts);
   }
 
+  // Build a <td> via textContent — never innerHTML — so channel names (which are
+  // attacker-influenced data) can never be interpreted as HTML.
+  function cell(text, className) {
+    const td = document.createElement("td");
+    td.textContent = text == null ? "" : String(text);
+    if (className) td.className = className;
+    return td;
+  }
+
+  function actionCell(label, onClick) {
+    const td = document.createElement("td");
+    const btn = document.createElement("button");
+    btn.className = "link";
+    btn.textContent = label;
+    btn.addEventListener("click", onClick);
+    td.appendChild(btn);
+    return td;
+  }
+
   function renderBanned(banned) {
     const tbody = $("bannedTable").querySelector("tbody");
-    tbody.innerHTML = "";
+    tbody.replaceChildren();
     const keys = Object.keys(banned);
     $("bannedTotal").textContent = keys.length;
     for (const primary of keys) {
       const b = banned[primary];
       const tr = document.createElement("tr");
-      tr.innerHTML =
-        `<td>${esc(b.name) || "(unknown)"}</td>` +
-        `<td>${esc(b.reason)}</td>` +
-        `<td class="key">${esc(primary)}</td>`;
-      const td = document.createElement("td");
-      const btn = document.createElement("button");
-      btn.className = "link";
-      btn.textContent = "unban";
-      btn.addEventListener("click", async () => {
-        delete banned[primary];
-        await YP.set({ [YP.STORAGE_KEYS.banned]: banned });
-        renderBanned(banned);
-        flash("Unbanned.");
-      });
-      td.appendChild(btn);
-      tr.appendChild(td);
+      tr.append(
+        cell(b.name || "(unknown)"),
+        cell(b.reason),
+        cell(primary, "key"),
+        actionCell("unban", async () => {
+          delete banned[primary];
+          await YP.set({ [YP.STORAGE_KEYS.banned]: banned });
+          renderBanned(banned);
+          flash("Unbanned.");
+        })
+      );
       tbody.appendChild(tr);
     }
   }
 
   function renderCounts(counts) {
     const tbody = $("countsTable").querySelector("tbody");
-    tbody.innerHTML = "";
+    tbody.replaceChildren();
     for (const primary of Object.keys(counts)) {
       const c = counts[primary];
       const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${esc(c.name) || esc(primary)}</td><td>${c.count}</td>`;
-      const td = document.createElement("td");
-      const btn = document.createElement("button");
-      btn.className = "link";
-      btn.textContent = "reset";
-      btn.addEventListener("click", async () => {
-        delete counts[primary];
-        await YP.set({ [YP.STORAGE_KEYS.counts]: counts });
-        renderCounts(counts);
-      });
-      td.appendChild(btn);
-      tr.appendChild(td);
+      tr.append(
+        cell(c.name || primary),
+        cell(c.count),
+        actionCell("reset", async () => {
+          delete counts[primary];
+          await YP.set({ [YP.STORAGE_KEYS.counts]: counts });
+          renderCounts(counts);
+        })
+      );
       tbody.appendChild(tr);
     }
-  }
-
-  function esc(s) {
-    return String(s || "").replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]));
   }
 
   async function save() {
