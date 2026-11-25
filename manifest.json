@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "YouPrune",
   "version": "0.1.0",
+  "version_name": "0.1.0-alpha",
   "description": "Prune your YouTube feed: enforce Not-Interested / Don't-recommend signals and hide channels & slop that YouTube ignores.",
   "permissions": ["storage", "contextMenus"],
   "host_permissions": ["*://*.youtube.com/*"],

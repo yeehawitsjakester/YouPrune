@@ -61,6 +61,24 @@ browsers or backs them up.
 Menu interception matches menu-item text. If your YouTube UI isn't English, set
 the matching strings in Settings → *Menu label matching*.
 
+## Development & releases
+
+**Day-to-day testing (fast loop):** don't package anything. Load the folder once
+via *Load unpacked*, then after each edit hit the **reload ⟳** button on YouPrune
+in `brave://extensions` and refresh the YouTube tab. Chromium blocks installing
+self-signed `.crx` files, so unpacked is the way to iterate.
+
+**Channel label:** `manifest.version` must be dotted integers, so the alpha label
+lives in `manifest.version_name` (`0.1.0-alpha`), which is what Brave displays.
+
+**Build a snapshot:** `./scripts/pack.sh` → `dist/youprune-<version_name>.zip`
+(only shippable files). Use for archiving, sharing, or a Web Store upload.
+
+**Cut an alpha release:** `./scripts/release.sh` tags `v<version_name>` and
+publishes a GitHub release with the zip attached. Any `version_name` containing a
+`-` (e.g. `-alpha`) is published as a **pre-release**. To cut the next one, bump
+`version` and `version_name` in `manifest.json`, commit, push, then run it again.
+
 ## Roadmap — network module
 
 The storage schema and Settings UI already reserve `apiEnabled`, `apiBaseUrl`,
