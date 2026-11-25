@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="26" fill="#0f0f0f"/>
+  <!-- YouTube-red rounded "play" turned into a pruned/cut mark -->
+  <g fill="none" stroke="#ff3b30" stroke-width="10" stroke-linecap="round">
+    <circle cx="44" cy="46" r="14"/>
+    <circle cx="44" cy="90" r="14"/>
+    <line x1="56" y1="54" x2="104" y2="86"/>
+    <line x1="56" y1="82" x2="104" y2="50"/>
+  </g>
+  <circle cx="98" cy="40" r="9" fill="#ff3b30"/>
+</svg>

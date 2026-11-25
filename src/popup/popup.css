@@ -1,0 +1,78 @@
+:root {
+  color-scheme: light dark;
+  font-family: Roboto, "Segoe UI", Arial, sans-serif;
+}
+body {
+  width: 280px;
+  margin: 0;
+  padding: 12px 14px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 {
+  font-size: 16px;
+  margin: 0;
+}
+.stats {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}
+.stats div {
+  flex: 1;
+  background: rgba(127, 127, 127, 0.12);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+.stats strong {
+  display: block;
+  font-size: 20px;
+}
+.stats span {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.row {
+  margin: 8px 0;
+}
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.action {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 8px;
+  background: #065fd4;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.action:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.muted {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 6px 0 0;
+  min-height: 14px;
+}
+footer {
+  margin-top: 12px;
+  text-align: right;
+}
+footer a {
+  font-size: 12px;
+  color: #065fd4;
+  text-decoration: none;
+}

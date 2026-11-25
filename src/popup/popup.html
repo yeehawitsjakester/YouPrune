@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>YouPrune</h1>
+      <label class="switch">
+        <input type="checkbox" id="enabled" />
+        <span>Enabled</span>
+      </label>
+    </header>
+
+    <div class="stats">
+      <div><strong id="bannedCount">0</strong><span>channels banned</span></div>
+      <div><strong id="hiddenCount">0</strong><span>hidden on page</span></div>
+    </div>
+
+    <div class="row">
+      <label class="switch">
+        <input type="checkbox" id="reveal" />
+        <span>Reveal hidden (audit mode)</span>
+      </label>
+    </div>
+
+    <button id="banCurrent" class="action">Ban the channel of this video</button>
+    <p id="currentChannel" class="muted"></p>
+
+    <footer>
+      <a href="#" id="openOptions">Settings &amp; ban list →</a>
+    </footer>
+
+    <script src="../common.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

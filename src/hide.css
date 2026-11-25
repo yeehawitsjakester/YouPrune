@@ -1,0 +1,30 @@
+/* YouPrune — hiding styles.
+ * Default: pruned items are removed from layout.
+ * Reveal mode (html[data-youprune-reveal]): pruned items stay visible but dimmed
+ * with a red dashed outline, so you can audit what YouPrune caught.
+ */
+
+html:not([data-youprune-reveal]) .youprune-hidden {
+  display: none !important;
+}
+
+html[data-youprune-reveal] .youprune-hidden {
+  opacity: 0.35 !important;
+  outline: 2px dashed #e53935 !important;
+  outline-offset: -2px;
+  position: relative;
+}
+
+html[data-youprune-reveal] .youprune-hidden::before {
+  content: "YouPrune: " attr(data-youprune-reason);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: #e53935;
+  color: #fff;
+  font: 600 10px/1.4 Roboto, Arial, sans-serif;
+  padding: 1px 5px;
+  border-radius: 0 0 4px 0;
+  pointer-events: none;
+}
